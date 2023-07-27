@@ -8,6 +8,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.metrics.pairwise import cosine_similarity
+from pathlib import Path
 
 # image scraping
 from bs4 import BeautifulSoup
@@ -29,10 +30,12 @@ st.title("Movie Recommendations for New Users")
 
 st.subheader("Predicting a Movie Rating:")
 
+pkl_path = Path(__file__).parents[1] / 'Movie_Reviews/streamlit/sentiment_pipe.pkl'
+
 # A. Load and cache the model using joblib
 @st.cache_resource
 def load_model():
-    model =  joblib.load('sentiment_pipe.pkl')
+    model =  joblib.load(pkl_path)
     return model
 
 #define the model
@@ -59,10 +62,14 @@ def load_data(link):
     df = pd.read_csv(link, index_col = 0)
     return df
 
+mov_path = Path(__file__).parents[1] / 'Movie_Reviews/streamlit/filtered_movies.csv'
+cont_path = Path(__file__).parents[1] / 'Movie_Reviews/streamlit/filtered_content.csv'
+
+
 # movie info
-movies_df = load_data('filtered_movies.csv')
+movies_df = load_data(mov_path)
 # vectorised keywords
-count_matrix = load_data('filtered_content.csv')
+count_matrix = load_data(cont_path)
 
 # define and cache the movie recommendation function
 @st.cache_data
@@ -179,8 +186,10 @@ def content_recommender(title, filt = 'Maximum Rating', rotten_filt='Yes', vote_
 #######################################################################################################################################
 ### USER RECOMMENDER FUNCTION
 
+R_path = Path(__file__).parents[1] / 'Movie_Reviews/streamlit/R_revs.csv'
+
 # vectorised keywords
-R_matrix = load_data('R_revs.csv')
+R_matrix = load_data(R_path)
 
 # define and cache the movie recommendation function
 @st.cache_data
