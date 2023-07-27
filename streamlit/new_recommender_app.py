@@ -30,7 +30,7 @@ st.title("Movie Recommendations for New Users")
 
 st.subheader("Predicting a Movie Rating:")
 
-pkl_path = Path(__file__).parents[1] / 'Movie_Reviews/streamlit/sentiment_pipe.pkl'
+pkl_path = Path(__file__).parents[1] / 'streamlit/sentiment_pipe.pkl'
 
 # A. Load and cache the model using joblib
 @st.cache_resource
@@ -62,8 +62,8 @@ def load_data(link):
     df = pd.read_csv(link, index_col = 0)
     return df
 
-mov_path = Path(__file__).parents[1] / 'Movie_Reviews/streamlit/filtered_movies.csv'
-cont_path = Path(__file__).parents[1] / 'Movie_Reviews/streamlit/filtered_content.csv'
+mov_path = Path(__file__).parents[1] / 'streamlit/filtered_movies.csv'
+cont_path = Path(__file__).parents[1] / 'streamlit/filtered_content.csv'
 
 
 # movie info
@@ -186,7 +186,7 @@ def content_recommender(title, filt = 'Maximum Rating', rotten_filt='Yes', vote_
 #######################################################################################################################################
 ### USER RECOMMENDER FUNCTION
 
-R_path = Path(__file__).parents[1] / 'Movie_Reviews/streamlit/R_revs.csv'
+R_path = Path(__file__).parents[1] / 'streamlit/R_revs.csv'
 
 # vectorised keywords
 R_matrix = load_data(R_path)
