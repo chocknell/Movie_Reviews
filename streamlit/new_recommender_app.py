@@ -311,18 +311,18 @@ def user_recommender(title, filt = 'Maximum Rating', rotten_filt = 'Yes', vote_t
 #################### image import function ####################
 def movie_image(movie_id):
 
-    try:
-        url = movies_df.loc[movie_id,'url']
+    #try:
+    url = movies_df.loc[movie_id,'url']
         
-        response = requests.get(url)
-        soup = BeautifulSoup(response.content, features = 'lxml')
+    response = requests.get(url)
+    soup = BeautifulSoup(response.content, features = 'lxml')
         
-        img = soup.find("div", {"class": "movie-thumbnail-wrap"}).find("img")
+    img = soup.find("div", {"class": "movie-thumbnail-wrap"}).find("img")
         
-        icon = img['src']
+    icon = img['src']
     
-    except ValueError:
-        icon = 'https://resizing.flixster.com/WJWgxyXNpxeQ2uYNrQq8tjKWvRc=/206x305/v2/https://flxt.tmsimg.com/assets/p9384_p_v8_bk.jpg'
+    #except ValueError:
+    #    icon = 'https://resizing.flixster.com/WJWgxyXNpxeQ2uYNrQq8tjKWvRc=/206x305/v2/https://flxt.tmsimg.com/assets/p9384_p_v8_bk.jpg'
     
     return icon
 
