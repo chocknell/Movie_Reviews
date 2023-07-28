@@ -324,7 +324,7 @@ def movie_image(movie_id):
     except ValueError:
         icon = 'https://images.fandango.com/cms/assets/5d84d010-59b1-11ea-b175-791e911be53d--rt-poster-defaultgif.gif'
     
-     except AttributeError:
+    except AttributeError:
         icon = 'https://images.fandango.com/cms/assets/5d84d010-59b1-11ea-b175-791e911be53d--rt-poster-defaultgif.gif'
     return icon
 
