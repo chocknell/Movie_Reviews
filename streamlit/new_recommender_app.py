@@ -160,6 +160,7 @@ def content_recommender(title, filt = 'Maximum Rating', rotten_filt='Yes', vote_
         {'Movie Title': movies_df['movie_title'],
          'Description': movies_df['movie_info'],
          'Release Date': movies_df['original_release_date'],
+         'Genre': movies_df['genres'],
          'Similarity': similarities.squeeze(),
          'Count': movies_df['tomatometer_count'],
          'Rating': movies_df['tomatometer_status'],
@@ -177,7 +178,7 @@ def content_recommender(title, filt = 'Maximum Rating', rotten_filt='Yes', vote_
     
     # printing selected movie name, rating and description
     print(f'Movie Name: \033[1m{movie_title}\033[0;0m')
-    print(f'Movie Rating: \033[1m{sim_df.iloc[movie_index,5]}\033[0;0m')
+    print(f'Movie Rating: \033[1m{sim_df.iloc[movie_index,6]}\033[0;0m')
     print(f'Movie Description: \n{sim_df.iloc[movie_index,1]}')
     
   
@@ -280,6 +281,7 @@ def user_recommender(title, filt = 'Maximum Rating', rotten_filt = 'Yes', vote_t
         {'Movie Title': movies_df['movie_title'],
          'Description': movies_df['movie_info'],
          'Release Date': movies_df['original_release_date'],
+         'Genre': movies_df['genres'],
          'Similarity': similarities.squeeze(),
          'Count': movies_df['tomatometer_count'],
          'Rating': movies_df['tomatometer_status'],
@@ -462,7 +464,7 @@ plt.gca().invert_yaxis()
 st.pyplot(fig)
 
 # print table
-st.dataframe(top_cont_movies)
+st.dataframe(top_cont_movies.reset_index().set_index('Movie Title').drop('index',axis = 1))
 
 
 
@@ -500,4 +502,4 @@ plt.gca().invert_yaxis()
 st.pyplot(fig)
 
 # print table
-st.dataframe(top_user_movies)
+st.dataframe(top_user_movies.reset_index().set_index('Movie Title').drop('index',axis = 1))
