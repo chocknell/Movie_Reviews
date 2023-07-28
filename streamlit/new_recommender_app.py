@@ -315,7 +315,7 @@ def movie_image(movie_id):
     url = movies_df.loc[movie_id,'url']
         
     response = requests.get(url)
-    soup = BeautifulSoup(response.content, features = 'lxml')
+    soup = BeautifulSoup(response.content, 'html.parser')
         
     img = soup.find("div", {"class": "movie-thumbnail-wrap"}).find("img")
         
