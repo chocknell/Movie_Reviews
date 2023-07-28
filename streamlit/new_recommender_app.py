@@ -1,4 +1,4 @@
-### KICKOFF - CODING AN APP IN STREAMLIT
+### MOVIE RECOMMENDATION APP
 
 ### import libraries
 import pandas as pd
@@ -324,6 +324,8 @@ def movie_image(movie_id):
     except ValueError:
         icon = 'https://images.fandango.com/cms/assets/5d84d010-59b1-11ea-b175-791e911be53d--rt-poster-defaultgif.gif'
     
+     except AttributeError:
+        icon = 'https://images.fandango.com/cms/assets/5d84d010-59b1-11ea-b175-791e911be53d--rt-poster-defaultgif.gif'
     return icon
 
 ################################################
@@ -332,7 +334,7 @@ def movie_image(movie_id):
 st.subheader("Provide Movie Recommendations:")
 
 # define function input
-mov_title = st.text_input('Enter the name of a movie you like below:', 'Thor')
+mov_title = st.text_input('Enter the name of a movie you like below:', 'Batman Begins')
 
 # display top four by content images
 in1, in2 = st.columns(2)
