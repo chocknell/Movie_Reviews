@@ -317,7 +317,7 @@ def movie_image(movie_id):
         response = requests.get(url)
         soup = BeautifulSoup(response.content, 'html.parser')
         
-        img = soup.find("div", {"class": "movie-thumbnail-wrap"}).find("img")
+        img = soup.find("div", {"class": "movie-thumbnail-wrap"}).find("rt-img")
         
         icon = img['src']
     
